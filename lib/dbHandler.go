@@ -821,3 +821,46 @@ func InsertIntoVehicles(id string, data []byte) bool {
 
 	return true
 }
+
+func ClearDB() {
+	fmt.Println("Hit Point : ClearDB ")
+
+	db, _ := sql.Open("sqlite3", "./cacheDatabase.db")
+
+	statement1, err1 := db.Prepare("DELETE FROM people;")
+	_, err1 = statement1.Exec()
+	if err1 != nil {
+		fmt.Println("Error 1 : ", err1.Error())
+	}
+
+	statement2, err2 := db.Prepare("DELETE FROM planets;")
+	_, err2 = statement2.Exec()
+	if err2 != nil {
+		fmt.Println("Error 2 : ", err2.Error())
+	}
+
+	statement3, err3 := db.Prepare("DELETE FROM films;")
+	_, err3 = statement3.Exec()
+	if err3 != nil {
+		fmt.Println("Error 2 : ", err3.Error())
+	}
+
+	statement4, err4 := db.Prepare("DELETE FROM species;")
+	_, err4 = statement4.Exec()
+	if err4 != nil {
+		fmt.Println("Error 2 : ", err4.Error())
+	}
+
+	statement5, err5 := db.Prepare("DELETE FROM starships;")
+	_, err5 = statement5.Exec()
+	if err5 != nil {
+		fmt.Println("Error 2 : ", err5.Error())
+	}
+
+	statement6, err6 := db.Prepare("DELETE FROM vehicles;")
+	_, err6 = statement6.Exec()
+	if err6 != nil {
+		fmt.Println("Error 2 : ", err6.Error())
+	}
+
+}
