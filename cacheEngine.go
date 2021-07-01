@@ -6,6 +6,7 @@ import (
     "github.com/gorilla/mux"
     "log"
     "net/http"
+    "time"
 
     L "./lib"
 )
@@ -261,7 +262,16 @@ func checkCache(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func clearCacheAfterSomeInterval() {
+    for {
+        <-time.After(15 * time.Minute)
+        // <-time.After(20 * time.Second)
+        go L.ClearDB()
+    }
+}
+
 func handleRequests() {
+
     myRouter := mux.NewRouter().StrictSlash(true)
     // myRouter.HandleFunc("/", homePage)
 
@@ -273,6 +283,7 @@ func handleRequests() {
 
 func main() {
     L.CreateTablesIfNotExists()
-    // fmt.Println("_____ SERVER STARTED ____  CACHE API ____\n")
+    go clearCacheAfterSomeInterval()
+
     handleRequests()
 }
