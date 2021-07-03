@@ -34,7 +34,7 @@ A caching engine/server built using Golang and Sqlite for [The Star Wars API](ht
 * Open in terminal.
 * Run the cache engine by command `go run cacheEngine.go`.
 
-  Use 'GET' on endpoint http://localhost:10006/**dataType** or http://localhost:10006/**dataType**/**id**
+  Use 'GET' on endpoint http://localhost:10006/dataType or http://localhost:10006/dataType/id
   
   **_dataType_** value can be 'people', 'planets', 'vehicles', 'films', 'species' or 'starships'
 
